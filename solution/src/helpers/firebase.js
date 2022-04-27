@@ -47,7 +47,8 @@ export const createUser = async (email, password, displayName, navigate) => {
     let userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
+     
     );
     //? kullanıcı profilini güncellemek için kullanılan firebase metodu
     await updateProfile(auth.currentUser, {
@@ -71,7 +72,8 @@ export const signIn = async (email, password, navigate) => {
     let userCredential = await signInWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
+      
     );
     navigate("/");
     toastSuccessNotify("Logged in successfully!");
@@ -82,9 +84,10 @@ export const signIn = async (email, password, navigate) => {
   }
 };
 
-export const logOut = () => {
+export const logOut = (navigate) => {
   signOut(auth);
   toastSuccessNotify("Logged out successfully!");
+  navigate("/dashboard");
 };
 
 export const userObserver = (setCurrentUser) => {

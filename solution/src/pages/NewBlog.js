@@ -2,8 +2,13 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import { AuthContext } from '../contexts/AuthContext';
+import { useContext } from 'react';
+import { BlogContext } from '../contexts/BlogContext';
 
 export default function FormPropsTextFields() {
+  const { currentUser } = useContext(AuthContext);
+  const {info, setInfo, AddData} = useContext(AuthContext);
   return (
     <>
    <h2>New Post</h2>
@@ -23,6 +28,8 @@ export default function FormPropsTextFields() {
     >
       <div>
         <TextField
+          name="title"
+         
           required
           id="outlined-required"
           label="Title"
@@ -33,6 +40,7 @@ export default function FormPropsTextFields() {
       <div>
       <TextField
           required
+          name='img'
           id="outlined-required"
           label="Image"
           defaultValue=""
@@ -43,6 +51,7 @@ export default function FormPropsTextFields() {
           required
           id="outlined-required"
           label="Description"
+          name='desc'
           defaultValue=""
           multiline={true}
           rows={10}

@@ -95,7 +95,7 @@ export default function MenuAppBar() {
 
           {currentUser ? (
             <div>
-              <Button size = "small" variant="contained" color= "error" onClick={() => logOut()}>Log Out</Button>
+              <Button size = "small" variant="contained" color= "error" onClick={() => logOut(navigate("/"))}>Log Out</Button>
             
             </div>
           ) : (
