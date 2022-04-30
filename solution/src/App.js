@@ -1,11 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import AppRouter from './app-router/AppRouter';
+import "./App.css";
+import AppRouter from "./app-router/AppRouter";
+import AuthContextProvider from "./contexts/AuthContext";
+import BlogContextProvider from "./contexts/BlogContext";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <div className="App">
-      <AppRouter/>
+    <div>
+      <AuthContextProvider>
+        <BlogContextProvider>
+          <AppRouter />
+          <ToastContainer/>
+        </BlogContextProvider>
+      </AuthContextProvider>
     </div>
   );
 }

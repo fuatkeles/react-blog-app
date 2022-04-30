@@ -10,11 +10,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import {
-  toastErrorNotify,
-  toastSuccessNotify,
-  toastWarnNotify,
-} from "../helpers/toastNotify";
+import Toastify from "./toastNotify";
 
 //* https://firebase.google.com/docs/auth/web/start
 //* https://console.firebase.google.com/ => project settings
@@ -55,10 +51,10 @@ export const createUser = async (email, password, displayName, navigate) => {
       displayName: displayName,
     });
     navigate("/");
-    toastSuccessNotify("Registered successfully!");
+    Toastify("Registered successfully!");
     console.log(userCredential);
   } catch (err) {
-    toastErrorNotify(err.message);
+    Toastify(err.message);
     // alert(err.message);
   }
 };
@@ -76,17 +72,17 @@ export const signIn = async (email, password, navigate) => {
       
     );
     navigate("/");
-    toastSuccessNotify("Logged in successfully!");
+    Toastify("Logged in successfully!");
     console.log(userCredential);
   } catch (err) {
-    toastErrorNotify(err.message);
+    Toastify(err.message);
     // alert(err.message);
   }
 };
 
 export const logOut = (navigate) => {
   signOut(auth);
-  toastSuccessNotify("Logged out successfully!");
+  Toastify("Logged out successfully!");
   navigate("/dashboard");
 };
 
@@ -125,11 +121,11 @@ export const forgotPassword = (email) => {
   sendPasswordResetEmail(auth, email)
     .then(() => {
       // Password reset email sent!
-      toastWarnNotify("Please check your mail box!");
+      Toastify("Please check your mail box!");
       // alert("Please check your mail box!");
     })
     .catch((err) => {
-      toastErrorNotify(err.message);
+      Toastify(err.message);
       // alert(err.message);
       // ..
     });
